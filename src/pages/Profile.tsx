@@ -204,6 +204,18 @@ const Profile: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
+            {/* Email (não editável) - TOPO */}
+            <div className="md:col-span-2">
+              <h3 className="text-lg font-semibold text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro flex items-center mb-4">
+                <Mail size={20} className="mr-2 text-cogna-roxo" />
+                Email
+              </h3>
+              <div className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <Mail size={16} className="text-gray-400 mr-3" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{profile.email}</span>
+              </div>
+            </div>
+
             {/* Informações Pessoais */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro flex items-center">
@@ -226,17 +238,6 @@ const Profile: React.FC = () => {
                 />
               </div>
 
-              {/* Email (não editável) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
-                </label>
-                <div className="flex items-center">
-                  <Mail size={16} className="text-gray-400 mr-2" />
-                  <span className="text-gray-600 dark:text-gray-400">{profile.email}</span>
-                </div>
-              </div>
-
               {/* Data de Nascimento */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -252,40 +253,41 @@ const Profile: React.FC = () => {
                 />
               </div>
 
-              {/* Documento */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Tipo de Documento
-                </label>
-                <select
-                  name="tp_documento"
-                  value={formData.tp_documento}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cogna-roxo focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-700"
-                >
-                  {tiposDocumento.map(tipo => (
-                    <option key={tipo.value} value={tipo.value}>
-                      {tipo.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {/* Documento - Lado a lado */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Tipo de Documento
+                  </label>
+                  <select
+                    name="tp_documento"
+                    value={formData.tp_documento}
+                    onChange={handleInputChange}
+                    disabled={!isEditing}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cogna-roxo focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-700"
+                  >
+                    {tiposDocumento.map(tipo => (
+                      <option key={tipo.value} value={tipo.value}>
+                        {tipo.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              {/* Número do Documento */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Número do Documento
-                </label>
-                <input
-                  type="text"
-                  name="documento"
-                  value={formData.documento}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  placeholder="Digite o número do documento"
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cogna-roxo focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-700"
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Número do Documento
+                  </label>
+                  <input
+                    type="text"
+                    name="documento"
+                    value={formData.documento}
+                    onChange={handleInputChange}
+                    disabled={!isEditing}
+                    placeholder="Digite o número"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cogna-roxo focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-700"
+                  />
+                </div>
               </div>
             </div>
 
