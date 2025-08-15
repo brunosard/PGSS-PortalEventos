@@ -20,7 +20,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Busca a sessão atual
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
@@ -30,7 +29,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     getSession();
 
-    // Escuta mudanças na autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event: string, session: Session | null) => {
         console.log('🔐 Auth state changed:', event, session?.user?.email);
@@ -45,127 +43,79 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = async (email: string, password: string) => {
     try {
-      setLoading(true);
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) {
-        console.error('❌ Login error:', error.message);
-        return { error };
-      }
-
-      console.log('✅ Login successful for:', email);
+      if (error) throw error;
       return { error: null };
     } catch (error) {
-      console.error('❌ Unexpected login error:', error);
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
     try {
-      setLoading(true);
-      
-      // Registra o usuário
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             full_name: fullName,
-            role: 'participant', // Role padrão para novos usuários
-          },
-        },
+            source: 'portal_eventos' // 🔑 Chave para identificar origem
+          }
+        }
       });
 
-      if (error) {
-        console.error('❌ Signup error:', error.message);
-        return { error };
-      }
+      if (error) throw error;
 
+      // Criar perfil na tabela usuario_portal (opcional, como backup)
       if (data.user) {
-        // Cria o perfil do usuário na tabela users
         const { error: profileError } = await supabase
-          .from('users')
-          .insert([
-            {
-              id: data.user.id,
-              email: data.user.email!,
-              full_name: fullName,
-              role: 'participant',
-            },
-          ]);
+          .from('usuario_portal')
+          .insert({
+            id_users: data.user.id,
+            email: email,
+            nome_completo: fullName,
+            tp_categoria: 'Comunidade Externa',
+            ativo: true
+          });
 
         if (profileError) {
-          console.error('❌ Profile creation error:', profileError.message);
-          // Não retorna erro aqui, pois o usuário foi criado com sucesso
+          console.warn('Erro ao criar perfil:', profileError);
         }
       }
 
-      console.log('✅ Signup successful for:', email);
       return { error: null };
     } catch (error) {
-      console.error('❌ Unexpected signup error:', error);
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
   const signOut = async () => {
     try {
-      setLoading(true);
       const { error } = await supabase.auth.signOut();
-      
-      if (error) {
-        console.error('❌ Signout error:', error.message);
-      } else {
-        console.log('✅ Signout successful');
-        setUser(null);
-        setSession(null);
-      }
+      if (error) throw error;
     } catch (error) {
-      console.error('❌ Unexpected signout error:', error);
-    } finally {
-      setLoading(false);
+      console.error('Erro ao fazer logout:', error);
     }
   };
 
   const resetPassword = async (email: string) => {
     try {
-      setLoading(true);
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/reset-password`,
       });
 
-      if (error) {
-        console.error('❌ Password reset error:', error.message);
-        return { error };
-      }
-
-      console.log('✅ Password reset email sent to:', email);
+      if (error) throw error;
       return { error: null };
     } catch (error) {
-      console.error('❌ Unexpected password reset error:', error);
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
-  const value: AuthContextType = {
-    user,
-    session,
-    loading,
-    signIn,
-    signUp,
-    signOut,
-    resetPassword,
-  };
+  const value: AuthContextType = { user, session, loading, signIn, signUp, signOut, resetPassword };
 
   return (
     <AuthContext.Provider value={value}>
@@ -176,10 +126,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  
   if (context === undefined) {
     throw new Error('useAuth deve ser usado dentro de um AuthProvider');
   }
-  
   return context;
 }; 

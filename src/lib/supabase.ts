@@ -23,16 +23,10 @@ export interface Database {
           location: string;
           max_participants: number;
           current_participants: number;
-          price: number;
-          is_free: boolean;
           status: 'draft' | 'published' | 'cancelled' | 'completed';
           created_at: string;
           updated_at: string;
-          created_by: string;
-          category: string;
-          image_url?: string;
-          requirements?: string;
-          agenda?: string;
+          organizer_id: string;
         };
         Insert: {
           id?: string;
@@ -43,16 +37,10 @@ export interface Database {
           location: string;
           max_participants: number;
           current_participants?: number;
-          price: number;
-          is_free: boolean;
           status?: 'draft' | 'published' | 'cancelled' | 'completed';
           created_at?: string;
           updated_at?: string;
-          created_by: string;
-          category: string;
-          image_url?: string;
-          requirements?: string;
-          agenda?: string;
+          organizer_id: string;
         };
         Update: {
           id?: string;
@@ -63,16 +51,10 @@ export interface Database {
           location?: string;
           max_participants?: number;
           current_participants?: number;
-          price?: number;
-          is_free?: boolean;
           status?: 'draft' | 'published' | 'cancelled' | 'completed';
           created_at?: string;
           updated_at?: string;
-          created_by?: string;
-          category?: string;
-          image_url?: string;
-          requirements?: string;
-          agenda?: string;
+          organizer_id?: string;
         };
       };
       users: {
@@ -83,20 +65,14 @@ export interface Database {
           role: 'admin' | 'organizer' | 'participant';
           created_at: string;
           updated_at: string;
-          avatar_url?: string;
-          phone?: string;
-          institution?: string;
         };
         Insert: {
-          id?: string;
+          id: string;
           email: string;
           full_name: string;
           role?: 'admin' | 'organizer' | 'participant';
           created_at?: string;
           updated_at?: string;
-          avatar_url?: string;
-          phone?: string;
-          institution?: string;
         };
         Update: {
           id?: string;
@@ -105,9 +81,6 @@ export interface Database {
           role?: 'admin' | 'organizer' | 'participant';
           created_at?: string;
           updated_at?: string;
-          avatar_url?: string;
-          phone?: string;
-          institution?: string;
         };
       };
       event_registrations: {
@@ -115,31 +88,69 @@ export interface Database {
           id: string;
           event_id: string;
           user_id: string;
+          registration_date: string;
           status: 'pending' | 'confirmed' | 'cancelled';
-          registered_at: string;
-          payment_status: 'pending' | 'paid' | 'refunded';
-          payment_method?: string;
-          notes?: string;
+          created_at: string;
         };
         Insert: {
           id?: string;
           event_id: string;
           user_id: string;
+          registration_date?: string;
           status?: 'pending' | 'confirmed' | 'cancelled';
-          registered_at?: string;
-          payment_status?: 'pending' | 'paid' | 'refunded';
-          payment_method?: string;
-          notes?: string;
+          created_at?: string;
         };
         Update: {
           id?: string;
           event_id?: string;
           user_id?: string;
+          registration_date?: string;
           status?: 'pending' | 'confirmed' | 'cancelled';
-          registered_at?: string;
-          payment_status?: 'pending' | 'paid' | 'refunded';
-          payment_method?: string;
-          notes?: string;
+          created_at?: string;
+        };
+      };
+      usuario_portal: {
+        Row: {
+          id: number;
+          id_users: string;
+          created_at: string;
+          nome_completo: string;
+          tp_categoria: 'Aluno(a) Doutorado' | 'Aluno(a) Ensino Fundamental' | 'Aluno(a) Ensino Médio' | 'Aluno(a) Especialização' | 'Aluno(a) Graduação' | 'Aluno(a) Mestrado' | 'Comunidade Externa' | 'Docente' | 'Pesquisador(a)' | 'Tutor(a)';
+          email: string;
+          area_atuacao: string | null;
+          id_titulacao: number | null;
+          tp_documento: number | null;
+          documento: string | null;
+          data_nascimento: string | null;
+          ativo: boolean | null;
+        };
+        Insert: {
+          id?: number;
+          id_users: string;
+          created_at?: string;
+          nome_completo: string;
+          tp_categoria: 'Aluno(a) Doutorado' | 'Aluno(a) Ensino Fundamental' | 'Aluno(a) Ensino Médio' | 'Aluno(a) Especialização' | 'Aluno(a) Graduação' | 'Aluno(a) Mestrado' | 'Comunidade Externa' | 'Docente' | 'Pesquisador(a)' | 'Tutor(a)';
+          email: string;
+          area_atuacao?: string | null;
+          id_titulacao?: number | null;
+          tp_documento?: number | null;
+          documento?: string | null;
+          data_nascimento?: string | null;
+          ativo?: boolean | null;
+        };
+        Update: {
+          id?: number;
+          id_users?: string;
+          created_at?: string;
+          nome_completo?: string;
+          tp_categoria?: 'Aluno(a) Doutorado' | 'Aluno(a) Ensino Fundamental' | 'Aluno(a) Ensino Médio' | 'Aluno(a) Especialização' | 'Aluno(a) Graduação' | 'Aluno(a) Mestrado' | 'Comunidade Externa' | 'Docente' | 'Pesquisador(a)' | 'Tutor(a)';
+          email?: string;
+          area_atuacao?: string | null;
+          id_titulacao?: number | null;
+          tp_documento?: number | null;
+          documento?: string | null;
+          data_nascimento?: string | null;
+          ativo?: boolean | null;
         };
       };
     };
