@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos customizados para dark mode */
+.dark input,
+.dark select,
+.dark textarea {
+  @apply bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400;
+}
+
+.dark input:disabled,
+.dark select:disabled,
+.dark textarea:disabled {
+  @apply bg-gray-600 text-gray-400 cursor-not-allowed;
+}
