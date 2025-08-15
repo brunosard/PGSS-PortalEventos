@@ -10,7 +10,7 @@ import EventDetails from './pages/EventDetails';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
+
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Componente Layout para renderizar Header e Footer condicionalmente
@@ -46,11 +46,7 @@ function App() {
                   <Dashboard />
                 </ProtectedRoute>
               } />
-              <Route path="/profile" element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              } />
+
             </Routes>
           </Layout>
         </Router>

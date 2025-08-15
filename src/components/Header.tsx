@@ -78,7 +78,7 @@ const Header: React.FC = () => {
               <div className="flex items-center space-x-4">
                 {/* User Info */}
                 <div className="hidden md:flex items-center space-x-3 text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro">
-                  <Link to="/profile" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                  <Link to="/dashboard" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                     <div className="w-8 h-8 bg-cogna-roxo rounded-full flex items-center justify-center">
                       <User size={16} className="text-white" />
                     </div>
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
                 <>
                   <div className="pt-2 border-t border-cogna-cinzaEscuro/20 dark:border-cogna-cinzaClaro/20">
                     <div className="flex items-center space-x-2 text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro mb-3">
-                      <Link to="/profile" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                      <Link to="/dashboard" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
                         <div className="w-6 h-6 bg-cogna-roxo rounded-full flex items-center justify-center">
                           <User size={14} className="text-white" />
                         </div>
