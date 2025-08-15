@@ -59,7 +59,7 @@ const Sidebar: React.FC<{ activeMenu: string; onMenuChange: (menu: string) => vo
                   }`}
                 >
                   <Icon size={20} className={`mr-3 ${isActive ? 'text-white' : item.color}`} />
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-medium text-left flex-1">{item.label}</span>
                   <ChevronRight 
                     size={16} 
                     className={`ml-auto transition-transform duration-200 ${
