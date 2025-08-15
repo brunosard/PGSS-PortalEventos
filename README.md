@@ -136,14 +136,8 @@ Para contribuir com o projeto:
 
 ## 📝 Licença
 
-Este projeto é desenvolvido para uso exclusivo da Polícia Geral de Segurança Social (PGSS) de Angola.
+Este projeto é desenvolvido para uso exclusivo da PGSS. 
 
-## 📞 Suporte
-
-Para suporte técnico ou dúvidas:
-- **Email**: eventos@cogna.com.br
-- **Telefone**: +55 11 3000-0000
-- **Horário**: Segunda a Sexta, 8h às 17h
 
 ## 👥 Equipe de Desenvolvimento
 
