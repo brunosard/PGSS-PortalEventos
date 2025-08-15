@@ -69,7 +69,7 @@ const Header: React.FC = () => {
               <Link to="/" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors">Início</Link>
               <Link to="/events" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors">Eventos</Link>
               {user && (
-                <Link to="/dashboard" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors">Dashboard</Link>
+                <Link to="/dashboard" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors">Meu Painel</Link>
               )}
             </nav>
 
@@ -138,7 +138,7 @@ const Header: React.FC = () => {
               <Link to="/" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors" onClick={() => setIsMenuOpen(false)}>Início</Link>
               <Link to="/events" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors" onClick={() => setIsMenuOpen(false)}>Eventos</Link>
               {user && (
-                <Link to="/dashboard" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors" onClick={() => setIsMenuOpen(false)}>Dashboard</Link>
+                <Link to="/dashboard" className="text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro hover:text-cogna-roxo transition-colors" onClick={() => setIsMenuOpen(false)}>Meu Painel</Link>
               )}
               {user && (
                 <>

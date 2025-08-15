@@ -344,7 +344,7 @@ const RequestedEvents: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-left">
         <h1 className="text-2xl font-bold text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro mb-2">
           Eventos Solicitados
         </h1>
