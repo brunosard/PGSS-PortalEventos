@@ -15,6 +15,9 @@ export interface UserProfile {
   documento: string | null;
   data_nascimento: string | null;
   ativo: boolean | null;
+  orcid: string | null;
+  estado: string | null;
+  cidade: string | null;
 }
 
 export const useUserProfile = () => {

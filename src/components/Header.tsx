@@ -78,17 +78,19 @@ const Header: React.FC = () => {
               <div className="flex items-center space-x-4">
                 {/* User Info */}
                 <div className="hidden md:flex items-center space-x-3 text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro">
-                  <div className="w-8 h-8 bg-cogna-roxo rounded-full flex items-center justify-center">
-                    <User size={16} className="text-white" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">
-                      {getUserDisplayName()}
-                    </span>
-                    <span className="text-xs text-cogna-cinzaEscuro/70 dark:text-cogna-cinzaClaro/70">
-                      {getUserCategory()}
-                    </span>
-                  </div>
+                  <Link to="/profile" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                    <div className="w-8 h-8 bg-cogna-roxo rounded-full flex items-center justify-center">
+                      <User size={16} className="text-white" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium">
+                        {getUserDisplayName()}
+                      </span>
+                      <span className="text-xs text-cogna-cinzaEscuro/70 dark:text-cogna-cinzaClaro/70">
+                        {getUserCategory()}
+                      </span>
+                    </div>
+                  </Link>
                 </div>
 
                 {/* Logout Button */}
@@ -142,17 +144,19 @@ const Header: React.FC = () => {
                 <>
                   <div className="pt-2 border-t border-cogna-cinzaEscuro/20 dark:border-cogna-cinzaClaro/20">
                     <div className="flex items-center space-x-2 text-cogna-cinzaEscuro dark:text-cogna-cinzaClaro mb-3">
-                      <div className="w-6 h-6 bg-cogna-roxo rounded-full flex items-center justify-center">
-                        <User size={14} className="text-white" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-sm font-medium">
-                          {getUserDisplayName()}
-                        </span>
-                        <span className="text-xs text-cogna-cinzaEscuro/70 dark:text-cogna-cinzaClaro/70">
-                          {getUserCategory()}
-                        </span>
-                      </div>
+                      <Link to="/profile" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                        <div className="w-6 h-6 bg-cogna-roxo rounded-full flex items-center justify-center">
+                          <User size={14} className="text-white" />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-sm font-medium">
+                            {getUserDisplayName()}
+                          </span>
+                          <span className="text-xs text-cogna-cinzaEscuro/70 dark:text-cogna-cinzaClaro/70">
+                            {getUserCategory()}
+                          </span>
+                        </div>
+                      </Link>
                     </div>
                     <button
                       onClick={() => {

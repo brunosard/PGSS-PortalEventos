@@ -10,59 +10,53 @@ import EventDetails from './pages/EventDetails';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Componente para renderizar Header e Footer condicionalmente
-const Layout: React.FC = () => {
+// Componente Layout para renderizar Header e Footer condicionalmente
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
-
-  if (isAuthPage) {
-    return (
-      <main className="flex-1">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      </main>
-    );
-  }
-
+  
   return (
-    <>
-      <Header />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/events/:id" element={<EventDetails />} />
-          <Route 
-            path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-        </Routes>
+    <div className="min-h-screen bg-cogna-cinzaClaro dark:bg-cogna-cinzaEscuro">
+      {!isAuthPage && <Header />}
+      <main className="flex-grow">
+        {children}
       </main>
-      <Footer />
-    </>
+      {!isAuthPage && <Footer />}
+    </div>
   );
 };
 
-const App: React.FC = () => {
+function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <div className="min-h-screen bg-cogna-cinzaClaro dark:bg-cogna-cinzaEscuro transition-colors duration-200">
-          <Router>
-            <Layout />
-          </Router>
-        </div>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/events/:id" element={<EventDetails />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </Layout>
+        </Router>
       </AuthProvider>
     </ThemeProvider>
   );
-};
+}
 
 export default App;

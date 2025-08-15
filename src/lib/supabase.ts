@@ -123,6 +123,9 @@ export interface Database {
           documento: string | null;
           data_nascimento: string | null;
           ativo: boolean | null;
+          orcid: string | null;
+          estado: string | null;
+          cidade: string | null;
         };
         Insert: {
           id?: number;
@@ -137,6 +140,9 @@ export interface Database {
           documento?: string | null;
           data_nascimento?: string | null;
           ativo?: boolean | null;
+          orcid?: string | null;
+          estado?: string | null;
+          cidade?: string | null;
         };
         Update: {
           id?: number;
@@ -151,6 +157,9 @@ export interface Database {
           documento?: string | null;
           data_nascimento?: string | null;
           ativo?: boolean | null;
+          orcid?: string | null;
+          estado?: string | null;
+          cidade?: string | null;
         };
       };
     };
